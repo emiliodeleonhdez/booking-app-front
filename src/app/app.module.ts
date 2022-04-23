@@ -16,15 +16,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { HomeComponent } from './home/home.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
-import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AppointmentsComponent,
-    AppointmentsListComponent,
+    AppointmentComponent,
+    AppointmentListComponent,
 
   ],
   imports: [

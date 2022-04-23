@@ -1,0 +1,19 @@
+<!-- <mat-spinner *ngIf="loading"></mat-spinner> -->
+<mat-toolbar *ngIf="successMsg" color="accent">{{ successMsg }}</mat-toolbar>
+<mat-toolbar *ngIf="errorMsg" color="warn">{{ errorMsg }}</mat-toolbar>
+
+<table class="table">
+  <thead>
+    <th scope="col" *ngFor="let column of columns">{{column}}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointments">
+      <td>{{appointment.appointmentDate}}</td>
+      <td>{{appointment.name}}</td>
+      <td>{{appointment.email}}</td>
+      <td><button type="button" class="btn-danger">Cancel</button></td>
+    </tr>
+
+
+  </tbody>
+</table>
