@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-appointment-list',
@@ -10,31 +11,45 @@ export class AppointmentListComponent implements OnInit {
   public errorMsg!: string;
   public successMsg!: string;
 
-  public appointments!: Array<{appointmentDate: string, name: string, email: string}>;
+  public appointments!: Array<{
+    _id: string;
+    appointmentDate: string;
+    name: string;
+    email: string;
+  }>;
 
   public columns!: Array<string>;
 
-
   constructor() {}
 
-  ngOnInit() {
-
+  async ngOnInit(): Promise<void> {
     this.columns = ['Appointment Date', 'Name', 'Email', 'Cancel'];
 
-    this.appointments =[
-      {
-        appointmentDate: '01/01/1999',
-        name: 'emilio',
-        email: 'emilio@correo.com',
-      },
-      {
-        appointmentDate: '01/03/1999',
-        name: 'emilio',
-        email: 'emilio@correo.com',
-      }
-    ]
-    ;
+    try {
+      const response = await axios.get('http://localhost:3001');
+      if ((response.status = 200)) {
+        console.log(response.data.payload);
 
+        this.appointments = response.data.payload;
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
+  async cancelAppointment(id: string): Promise<void> {
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/appointments/${id}`
+      );
+      if(response.status = 200){
+        this.appointments = this.appointments.filter((appointment)=>appointment._id !== id
+        )
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
