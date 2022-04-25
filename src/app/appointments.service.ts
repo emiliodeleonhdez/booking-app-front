@@ -8,7 +8,7 @@ import { Appointment } from './Appointment';
   providedIn: 'root',
 })
 export class AppointmentsService {
-  private BASE_URL = environment.API_URL;
+  public BASE_URL = environment.API_URL;
 
   constructor(private http: HttpClient) {}
 
