@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
-import { environment } from '../../environments/environment.prod';
+import { environment } from "../../environments/environment.prod";
 
 @Component({
   selector: 'app-appointment-list',
