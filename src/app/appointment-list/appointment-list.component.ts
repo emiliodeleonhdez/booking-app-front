@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-appointment-list',
@@ -26,9 +27,10 @@ export class AppointmentListComponent implements OnInit {
     this.columns = ['Appointment Date', 'Name', 'Email', 'Cancel'];
 
     try {
-      const response = await axios.get('http://localhost:3001');
+      const response = await axios.get(`${environment.API_URL}`);
       if ((response.status = 200)) {
-        console.log(response.data.payload);
+
+        console.log("Response from API...",response.data.payload);
 
         this.appointments = response.data.payload;
       }
@@ -41,7 +43,7 @@ export class AppointmentListComponent implements OnInit {
 
     try {
       const response = await axios.delete(
-        `http://localhost:3001/appointments/${id}`
+        `${environment.API_URL}/appointments/${id}`
       );
       if(response.status = 200){
         this.appointments = this.appointments.filter((appointment)=>appointment._id !== id
